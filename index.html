@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Shopping list example</title>
+  <style>
+    li {
+      margin-bottom: 10px;
+    }
+
+    li button {
+      font-size: 8px;
+      margin-left: 20px;
+      color: #666;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>My shopping list</h1>
+  <div>
+    <label for="item">Enter a new item:</label>
+    <input type="text" name="item" id="item">
+    <button id="addItemButton">Add item</button>
+  </div>
+  <ul>
+  </ul>
+<script>
+  // Sélectionner le ul, l'input et le button
+  let ul = document.querySelector("ul");
+  let input = document.getElementById("item");
+  let addItemButton = document.getElementById("addItemButton");
+
+  // Donner le focus à l'input pour faciliter la saisie
+  input.focus();
+  
+  // Déclencher une fonction sur un click sur le button
+  addItemButton.onclick = function () {
+    // Récupérer le contenu de l'input dans une variable
+    let value = input.value;
+    // Remettre à zéro le contenu de l'input
+    input.value = "";
+    // Créer les trois éléments qui vont venir constituer notre nouvel item de la liste
+    let itemLi = document.createElement("LI");
+    let itemSpan = document.createElement("SPAN");
+    let itemDeleteButton = document.createElement("BUTTON");
+    // Placer le span et le button dans le li
+    itemLi.appendChild(itemSpan);
+    itemLi.appendChild(itemDeleteButton);
+    // Définir le contenu du span et du button
+    itemSpan.textContent = value;
+    itemDeleteButton.textContent = "Supprimer";
+    // Placer le li dans le ul
+    ul.appendChild(itemLi);
+    // Supprimer un item
+    itemDeleteButton.onclick = function () {
+      ul.removeChild(itemLi);
+    }
+    input.focus();
+}
+</script>
+</body>
+
+</html>
